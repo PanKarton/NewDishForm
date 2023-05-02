@@ -1,9 +1,15 @@
-import Link from 'next/link';
-import styled from 'styled-components';
+import { ReactNode } from 'react';
+import { StyledLink, StyledWrapper } from './CustomLink.styles';
 
-export const CustomLink = styled(Link)`
-  font-family: ${({ theme }) => theme.fontFamily.pimary};
-  color: ${({ theme }) => theme.color.contrast};
-  text-decoration: none;
-  font-weight: 500;
-`;
+type CustomLinkTypes = {
+  children: ReactNode;
+  href: string;
+};
+
+export const CustomLink = ({ children, href }: CustomLinkTypes) => {
+  return (
+    <StyledWrapper>
+      <StyledLink href={href}>{children}</StyledLink>
+    </StyledWrapper>
+  );
+};
