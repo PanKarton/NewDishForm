@@ -1,16 +1,24 @@
 export const theme = {
   color: {
     primary: '#FFF',
-    primaryDark: '#E8EAED',
+    primaryDark: '#e8e8e9',
     primaryTransparent: 'hsla(0, 100%, 100%, 0.5)',
     // Black
-    contrast: '#2D2D2F',
-    contrastTransparent: ' hsla(240, 2%, 18%, 0.95)',
-    contrastLightHover: '#3D3D3F',
-    contrastDarkHover: '#1D1D1F',
+    contrast: '#040f0f',
+    contrastTransparent: ' hsla(180, 58%, 4%, 0.95)',
+    // contrastLightHover: '#3D3D3F',
+    // contrastDarkHover: '#1D1D1F',
+
+    // Dark green
+    primaryAccent: '#0e3013',
+
+    // Light green
+    secondaryAccent: '#289944',
+
     // Error
     error: '#FF0000',
     errorTransparent: 'hsla(0, 100%, 50%, 0.05)',
+
     // Border dividers
     borderDivider: '#CCC',
   },
