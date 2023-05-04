@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { CustomLink } from '@/components/atoms/CustomLink/CustomLink';
 import { StyledHeader, StyledHeroText } from './Header.styles';
 import { baskerville } from '@/assets/fonts';
-import Link from 'next/link';
 
 export const Header = () => {
   return (
@@ -14,7 +13,7 @@ export const Header = () => {
         <StyledHeroText className={baskerville.className}>Soup &#38; Slice</StyledHeroText>
       </div>
       <div className="new-dish-button-wrapper">
-        <CustomLink href="/add-new-dish">Admin panel</CustomLink>
+        <CustomLink href="admin-login">Admin panel</CustomLink>
       </div>
     </StyledHeader>
   );

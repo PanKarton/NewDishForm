@@ -8,6 +8,8 @@ export const StyledWrapper = styled.div`
   padding: 0.5rem 1rem;
 
   a {
+    position: relative;
+    z-index: 9999;
     text-decoration: none;
     font-weight: 500;
     color: ${({ theme }) => theme.color.contrast};
@@ -17,7 +19,6 @@ export const StyledWrapper = styled.div`
     content: '';
     position: absolute;
     inset: 0;
-    z-index: -1;
     border: 0.0625rem solid ${({ theme }) => theme.color.primaryAccent};
     translate: 0.25rem -0.25rem;
     transition: translate 250ms;

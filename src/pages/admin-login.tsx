@@ -1,14 +1,18 @@
+import { LogInForm } from '@/components/molecules/LogInForm/LogInForm';
+import { LogInPageSection } from '@/modules/admin-login/LogInPageSection/LogInPageSection';
 import Head from 'next/head';
 import React from 'react';
 
-export const AdminLogin = () => (
+const AdminLogin = () => (
   <>
     <Head>
-      <title>Soup &#38; Slice</title>
-      <meta name="description" content="Main page of our restaurant" />
+      <title>Soup &#38; Slice - admin login page</title>
+      <meta name="description" content="Admin login page" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div></div>
+    <LogInPageSection />
   </>
 );
+
+export default AdminLogin;
