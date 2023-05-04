@@ -9,6 +9,7 @@ export const StyledHeader = styled.header`
     position: absolute;
     top: 2rem;
     right: 4rem;
+    width: max-content;
   }
 
   .hero-image-wrapper {
@@ -28,7 +29,6 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledHeroText = styled.h1`
-  font-family: var(--font-baskerville);
   font-size: ${({ theme }) => theme.fontSize.text8XL};
   line-height: 0.9;
   letter-spacing: 1rem;

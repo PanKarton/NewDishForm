@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  font-family: var(--font-inter);
 }
 
 *,
@@ -16,4 +17,8 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+h1 {
+  font-family: var(--font-roboto-mono);
 }

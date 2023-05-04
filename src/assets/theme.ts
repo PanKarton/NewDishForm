@@ -23,10 +23,6 @@ export const theme = {
     borderDivider: '#CCC',
   },
 
-  fontFamily: {
-    primary: `'Montserrat', sans-serif`,
-  },
-
   fontSize: {
     textXS: '0.75rem',
     textSM: '0.875rem',
