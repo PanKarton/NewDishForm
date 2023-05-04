@@ -39,6 +39,6 @@ export const theme = {
     text5XL: '3rem',
     text6XL: '3.75rem',
     text7XL: '4.5rem',
-    text8XL: '6rem',
+    text8XL: '10rem',
   },
 };

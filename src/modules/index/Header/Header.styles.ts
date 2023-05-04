@@ -18,4 +18,19 @@ export const StyledHeader = styled.header`
     margin-left: auto;
     clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
   }
+  .hero-text-wrapper {
+    position: absolute;
+    top: 45%;
+    left: 7%;
+    translate: 0 -50%;
+    width: 25rem;
+  }
+`;
+
+export const StyledHeroText = styled.h1`
+  font-family: var(--font-baskerville);
+  font-size: ${({ theme }) => theme.fontSize.text8XL};
+  line-height: 0.9;
+  letter-spacing: 1rem;
+  font-weight: 500;
 `;
