@@ -10,10 +10,10 @@ export const theme = {
     // contrastDarkHover: '#1D1D1F',
 
     // Dark green
-    primaryAccent: '#0e3013',
+    primaryAccent: '#16a085',
 
     // Light green
-    secondaryAccent: '#289944',
+    secondaryAccent: '#1abc9c',
 
     // Error
     error: '#FF0000',
@@ -21,6 +21,8 @@ export const theme = {
 
     // Border dividers
     borderDivider: '#CCC',
+
+    // Login
   },
 
   fontSize: {

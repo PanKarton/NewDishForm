@@ -17,7 +17,7 @@ export const StyledHeader = styled.header`
     height: 100%;
     aspect-ratio: 1.5;
     margin-left: auto;
-    clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(30% 0%, 100% 0, 100% 100%, 0% 100%);
   }
   .hero-text-wrapper {
     position: absolute;
@@ -33,4 +33,6 @@ export const StyledHeroText = styled.h1`
   line-height: 0.9;
   letter-spacing: 1rem;
   font-weight: 500;
+  font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman',
+    serif;
 `;

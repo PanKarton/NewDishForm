@@ -7,19 +7,23 @@ export const StyledSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme }) => theme.color.secondaryAccent};
 
   .wrapper {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     width: min(90%, 20rem);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     background-color: ${({ theme }) => theme.color.primary};
-    padding-block: 3rem;
+    overflow: hidden;
   }
 `;
 
 export const StyledHeading = styled.h1`
   text-align: center;
-  margin-bottom: 3rem;
+  background-color: ${({ theme }) => theme.color.primaryAccent};
+  height: 6rem;
+  line-height: 6rem;
+  color: ${({ theme }) => theme.color.primary};
 `;
 
 export const LogInPageSection = () => (

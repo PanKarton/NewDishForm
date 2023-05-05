@@ -7,6 +7,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+  padding-block: 2rem;
 `;
 
 export const StyledInput = styled.input`
@@ -36,6 +37,21 @@ export const StyledSubmit = styled.button`
   }
 `;
 
+export const StyledCheckboxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: 90%;
+  height: 1.25rem;
+
+  & > label {
+    line-height: 1rem;
+
+    &:checked {
+    }
+  }
+`;
+
 export const LogInForm = () => {
   const router = useRouter();
   const handleSubmit = useCallback(() => {
@@ -46,10 +62,10 @@ export const LogInForm = () => {
     <StyledForm onSubmit={handleSubmit}>
       <StyledInput type="text" name="login" placeholder="Login" />
       <StyledInput type="text" name="password" placeholder="Password" />
-      <div>
+      <StyledCheckboxWrapper>
         <input id="rememberMe" name="rememberMe" type="checkbox" />
         <label htmlFor="rememberMe">Remember me</label>
-      </div>
+      </StyledCheckboxWrapper>
       <StyledSubmit>LOGIN</StyledSubmit>
     </StyledForm>
   );
