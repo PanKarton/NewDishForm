@@ -1,11 +1,12 @@
 export const theme = {
   color: {
-    primary: '#FFF',
+    primary: '#fff',
     primaryDark: '#e8e8e9',
     primaryTransparent: 'hsla(0, 100%, 100%, 0.5)',
 
     // Black
     contrast: '#040f0f',
+    contrastLighter: '#444',
     contrastTransparent: ' hsla(180, 58%, 4%, 0.95)',
 
     // Dark green
@@ -14,13 +15,23 @@ export const theme = {
 
     // Light green
     secondaryAccent: '#1abc9c',
+    secondaryAccentLighter: '#2bcdad',
 
     // Error
-    error: '#FF0000',
+    error: '#ff0000',
     errorTransparent: 'hsla(0, 100%, 50%, 0.05)',
 
     // Border dividers
-    borderDivider: '#CCC',
+    borderDivider: '#ccc',
+
+    // ADMIN PANEL
+
+    adminPanel: {
+      primary: '#fff',
+      contrast: '#2a3143',
+      contrastLighter: '#b9d1fe',
+      contrastLightest: '#ccdefe',
+    },
   },
 
   fontFamily: {
