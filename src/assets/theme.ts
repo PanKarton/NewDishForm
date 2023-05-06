@@ -28,9 +28,15 @@ export const theme = {
 
     adminPanel: {
       primary: '#fff',
-      contrast: '#2a3143',
-      contrastLighter: '#b9d1fe',
-      contrastLightest: '#ccdefe',
+
+      // Black
+      contrast: '#040f0f',
+      contrastLighter: '#444',
+
+      // Carchoal
+      primaryAccent: '#2a3143',
+      primaryAccentLighter: '#b9d1fe',
+      primaryAccentLightest: '#ccdefe',
     },
   },
 

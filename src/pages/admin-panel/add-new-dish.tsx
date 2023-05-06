@@ -10,7 +10,7 @@ const AddNewDish = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <>
-      <AdminDashboard>
+      <AdminDashboard heading="Add new dish!">
         <p>new dish</p>
       </AdminDashboard>
     </>

@@ -5,7 +5,7 @@ import { AdminPanelNavLink } from '../AdminPanelNavLink/AdminPanelNavLink';
 export const StyledNav = styled.nav`
   grid-area: 1/1/3/2;
   padding: 4rem 0 0 2rem;
-  background-color: ${({ theme }) => theme.color.adminPanel.contrast};
+  background-color: ${({ theme }) => theme.color.adminPanel.primaryAccent};
 `;
 export const StyledList = styled.ul`
   display: flex;

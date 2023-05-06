@@ -10,7 +10,7 @@ const AdminPanel = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <>
-      <AdminDashboard>
+      <AdminDashboard heading="Admin dashboard">
         <div>dashboard</div>
       </AdminDashboard>
     </>
