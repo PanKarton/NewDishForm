@@ -3,11 +3,10 @@ export const theme = {
     primary: '#FFF',
     primaryDark: '#e8e8e9',
     primaryTransparent: 'hsla(0, 100%, 100%, 0.5)',
+
     // Black
     contrast: '#040f0f',
     contrastTransparent: ' hsla(180, 58%, 4%, 0.95)',
-    // contrastLightHover: '#3D3D3F',
-    // contrastDarkHover: '#1D1D1F',
 
     // Dark green
     primaryAccent: '#16a085',
@@ -22,14 +21,11 @@ export const theme = {
 
     // Border dividers
     borderDivider: '#CCC',
-
-    // Login
   },
 
   fontFamily: {
     primary: 'Open sans',
-    secondary: `Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman',
-    serif`,
+    secondary: `'Baskerville', sans-serif`,
   },
 
   fontSize: {
