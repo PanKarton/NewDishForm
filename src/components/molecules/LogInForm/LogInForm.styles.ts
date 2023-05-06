@@ -30,6 +30,11 @@ export const StyledInput = styled.input`
   padding: 0.75rem 0.75rem;
   font-weight: 500;
   width: 100%;
+
+  &:focus {
+    outline: 2px solid ${({ theme }) => theme.color.primaryAccent};
+    border-color: transparent;
+  }
 `;
 
 export const StyledSubmit = styled.button`
@@ -63,5 +68,9 @@ export const StyledCheckboxWrapper = styled.div`
 
   input[type='checkbox']:checked {
     accent-color: ${({ theme }) => theme.color.primaryAccent};
+  }
+
+  &:hover > label {
+    cursor: pointer;
   }
 `;

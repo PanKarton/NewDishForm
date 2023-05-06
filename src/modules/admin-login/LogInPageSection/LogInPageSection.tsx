@@ -1,3 +1,4 @@
+import { BackLinkArrow } from '@/components/atoms/BackLinkArrow/BackLinkArrow';
 import { LogInForm } from '@/components/molecules/LogInForm/LogInForm';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -24,6 +25,9 @@ export const LogInPageSection = () => (
         <StyledLinkWrapper>
           <Link href="password-recovery">Forgot password?</Link>
         </StyledLinkWrapper>
+      </div>
+      <div className="previous-page-link-wrapper">
+        <BackLinkArrow href="/" />
       </div>
     </StyledSection>
   </>

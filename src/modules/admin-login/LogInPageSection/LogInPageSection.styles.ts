@@ -14,6 +14,12 @@ export const StyledSection = styled.section`
     background-color: ${({ theme }) => theme.color.primary};
     overflow: hidden;
   }
+
+  .previous-page-link-wrapper {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
 `;
 
 export const StyledHeading = styled.h1`
