@@ -19,7 +19,7 @@ export const StyledWrapper = styled.div`
     content: '';
     position: absolute;
     inset: 0;
-    border: 0.0625rem solid ${({ theme }) => theme.color.primaryAccent};
+    border: 0.0625rem solid ${({ theme }) => theme.color.contrast};
     translate: 0.25rem -0.25rem;
     transition: translate 250ms;
   }

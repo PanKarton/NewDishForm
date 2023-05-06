@@ -33,6 +33,5 @@ export const StyledHeroText = styled.h1`
   line-height: 0.9;
   letter-spacing: 1rem;
   font-weight: 500;
-  font-family: Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman',
-    serif;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
 `;

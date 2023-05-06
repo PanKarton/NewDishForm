@@ -11,6 +11,7 @@ export const theme = {
 
     // Dark green
     primaryAccent: '#16a085',
+    primaryAccentLighter: '#19b698',
 
     // Light green
     secondaryAccent: '#1abc9c',
@@ -23,6 +24,12 @@ export const theme = {
     borderDivider: '#CCC',
 
     // Login
+  },
+
+  fontFamily: {
+    primary: 'Open sans',
+    secondary: `Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman',
+    serif`,
   },
 
   fontSize: {

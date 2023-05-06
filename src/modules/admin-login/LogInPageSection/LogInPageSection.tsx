@@ -1,37 +1,30 @@
 import { LogInForm } from '@/components/molecules/LogInForm/LogInForm';
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+import { StyledHeading, StyledSection } from './LogInPageSection.styles';
 
-export const StyledSection = styled.section`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.color.secondaryAccent};
-
-  .wrapper {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    width: min(90%, 20rem);
-    border-radius: 0.5rem;
-    background-color: ${({ theme }) => theme.color.primary};
-    overflow: hidden;
+export const StyledLinkWrapper = styled.div`
+  padding-left: 1rem;
+  padding-block: 0.25rem 1rem;
+  a {
+    color: ${({ theme }) => theme.color.primaryAccent};
+    font-size: ${({ theme }) => theme.fontSize.textSM};
+    &:hover {
+      color: ${({ theme }) => theme.color.primaryAccentLighter};
+    }
   }
-`;
-
-export const StyledHeading = styled.h1`
-  text-align: center;
-  background-color: ${({ theme }) => theme.color.primaryAccent};
-  height: 6rem;
-  line-height: 6rem;
-  color: ${({ theme }) => theme.color.primary};
 `;
 
 export const LogInPageSection = () => (
   <>
     <StyledSection>
       <div className="wrapper">
-        <StyledHeading>LOGIN</StyledHeading>
+        <StyledHeading>Admin login form</StyledHeading>
         <LogInForm />
+        <StyledLinkWrapper>
+          <Link href="password-recovery">Forgot password?</Link>
+        </StyledLinkWrapper>
       </div>
     </StyledSection>
   </>
