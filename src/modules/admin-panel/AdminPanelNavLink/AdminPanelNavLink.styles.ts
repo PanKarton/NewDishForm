@@ -8,7 +8,7 @@ export const StyledLink = styled(Link)`
   gap: 0.5rem;
 
   span {
-    font-size: ${({ theme }) => theme.fontSize.textSM};
+    font-size: ${({ theme }) => theme.fontSize.textBase};
   }
   svg {
     font-size: ${({ theme }) => theme.fontSize.text2XL};

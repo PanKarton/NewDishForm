@@ -1,4 +1,5 @@
 import { AdminDashboard } from '@/components/templates/AdminDashboard/AdminDashboard';
+import { NewDishForm } from '@/modules/admin-panel/NewDishForm/NewDishForm';
 import Head from 'next/head';
 
 const AddNewDish = () => (
@@ -11,7 +12,7 @@ const AddNewDish = () => (
     </Head>
     <>
       <AdminDashboard heading="Add new dish!">
-        <p>new dish</p>
+        <NewDishForm />
       </AdminDashboard>
     </>
   </>
