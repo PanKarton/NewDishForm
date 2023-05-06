@@ -1,6 +1,5 @@
 import { LogInForm } from '@/components/molecules/LogInForm/LogInForm';
 import Link from 'next/link';
-import React from 'react';
 import styled from 'styled-components';
 import { StyledHeading, StyledSection } from './LogInPageSection.styles';
 

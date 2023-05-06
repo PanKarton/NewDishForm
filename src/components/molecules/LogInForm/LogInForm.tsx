@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { Field, Form, FormRenderProps } from 'react-final-form';
 import { StyledCheckboxWrapper, StyledForm, StyledInput, StyledSubmit } from './LogInForm.styles';
 

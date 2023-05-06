@@ -8,5 +8,6 @@ const customJestConfig = {
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
+  babelOptions: { presets: ['@babel/preset-react'] },
 };
 module.exports = createJestConfig(customJestConfig);

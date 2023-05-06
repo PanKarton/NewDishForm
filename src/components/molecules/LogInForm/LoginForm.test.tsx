@@ -26,7 +26,6 @@ describe('LogInForm', () => {
     fireEvent.click(rememberMeCheckbox);
     fireEvent.click(submitButton);
 
-    // await waitFor(() => expect(mockRouter.push).toHaveBeenCalledWith('/admin-panel'));
     expect(mockRouter).toMatchObject({
       pathname: '/admin-panel',
     });
