@@ -10,7 +10,7 @@ import { useNewDishForm } from './useNewDishForm';
 import { FaPizzaSlice } from 'react-icons/fa';
 import { BiBowlHot } from 'react-icons/bi';
 import { TbBread } from 'react-icons/tb';
-import { IntigerNumberInput } from '../IntigerNumberInput/IntigerNumberInput';
+import { NumberInputWithButtons } from '../NumberInputWithButtons/NumberInputWithButtons';
 
 export const NewDishForm = () => {
   const { dishData, setDishData, handleUpdateDishData } = useNewDishForm();
@@ -39,7 +39,7 @@ export const NewDishForm = () => {
       <>
         <StyledInputWrapper>
           <label htmlFor="no_of_slices">Number of slices:</label>
-          <IntigerNumberInput
+          <NumberInputWithButtons
             id="no_of_slices"
             name="no_of_slices"
             value={dishData.no_of_slices}
@@ -49,13 +49,13 @@ export const NewDishForm = () => {
         </StyledInputWrapper>
         <StyledInputWrapper>
           <label htmlFor="diameter">Diameter:</label>
-          <StyledInput
-            type="number"
-            step="0.1"
+          <NumberInputWithButtons
             id="diameter"
             name="diameter"
+            isFloat
             value={dishData.diameter}
             onChange={handleUpdateDishData}
+            setValue={value => setDishData(prevData => ({ ...prevData, diameter: value }))}
           />
         </StyledInputWrapper>
       </>
@@ -68,17 +68,17 @@ export const NewDishForm = () => {
       <>
         <StyledInputWrapper>
           <label htmlFor="slices_of_bread">Slices of bread:</label>
-          <StyledInput
-            type="number"
+          <NumberInputWithButtons
             id="slices_of_bread"
             name="slices_of_bread"
             value={dishData.slices_of_bread}
             onChange={handleUpdateDishData}
+            setValue={value => setDishData(prevData => ({ ...prevData, slices_of_bread: value }))}
           />
         </StyledInputWrapper>
       </>
     ),
-    [dishData.slices_of_bread, handleUpdateDishData]
+    [dishData.slices_of_bread, handleUpdateDishData, setDishData]
   );
 
   const renderDishOptions = useCallback(() => {

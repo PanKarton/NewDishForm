@@ -18,12 +18,12 @@ export const StyledInputWrapper = styled.div`
   padding-block: 3rem;
 
   label {
-    font-size: 1.25rem;
+    font-size: ${({ theme }) => theme.fontSize.textXL};
     font-weight: 600;
   }
 
   .spiciness-display {
-    font-size: 1.25rem;
+    font-size: ${({ theme }) => theme.fontSize.textXL};
     font-weight: 600;
   }
 `;
@@ -32,7 +32,7 @@ export const StyledInput = styled.input`
   color: ${({ theme }) => theme.color.adminPanel.contrastLighter};
   border: 2px solid ${({ theme }) => theme.color.adminPanel.secondaryAccentLight};
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: ${({ theme }) => theme.fontSize.textXL};
   border-radius: 0.25rem;
   width: 30rem;
 
@@ -85,7 +85,7 @@ export const StyledRadioInputWrapper = styled.div`
   padding: 2rem 1rem;
 
   .dish-type {
-    font-size: 1.25rem;
+    font-size: ${({ theme }) => theme.fontSize.textXL};
     font-weight: 600;
   }
   .inputs-wrapper {
@@ -108,7 +108,7 @@ export const StyledRadioInputWrapper = styled.div`
         }
 
         span {
-          font-size: 1.25rem;
+          font-size: ${({ theme }) => theme.fontSize.textXL};
         }
 
         .icon-wrapper {

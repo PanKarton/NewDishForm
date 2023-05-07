@@ -4,38 +4,35 @@ export type DishData = {
   name: string;
   preparation_time: string;
   type: string;
-  no_of_slices?: number;
-  diameter?: number;
-  spiciness_scale?: number;
-  slices_of_bread?: number;
+  no_of_slices?: string;
+  diameter?: string;
+  spiciness_scale?: string;
+  slices_of_bread?: string;
 };
 
 const initDishData = {
   name: '',
   preparation_time: '',
   type: 'pizza',
-  no_of_slices: 0,
-  diameter: 0,
-  spiciness_scale: 0,
-  slices_of_bread: 0,
+  no_of_slices: '0',
+  diameter: '0',
+  spiciness_scale: '0',
+  slices_of_bread: '0',
 };
 
 export const useNewDishForm = () => {
   const [dishData, setDishData] = useState<DishData>(initDishData);
 
-  console.clear();
-  console.table(dishData);
+  // console.clear();
+  // console.table(dishData);
 
   const handleUpdateDishData = useCallback(
     (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
       const { name, value } = e.target;
-      console.log(typeof value);
-
-      let newValue: number | string = value;
 
       setDishData(prevData => ({
         ...prevData,
-        [name]: newValue,
+        [name]: value,
       }));
     },
     []
