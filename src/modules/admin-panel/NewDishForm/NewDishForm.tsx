@@ -5,16 +5,19 @@ import {
   StyledInput,
   StyledInputWrapper,
   StyledRadioInputWrapper,
+  StyledSubmit,
 } from './NewDishForm.styles';
 import { DishData, useNewDishForm } from './useNewDishForm';
 import { FaPizzaSlice } from 'react-icons/fa';
 import { BiBowlHot } from 'react-icons/bi';
 import { TbBread } from 'react-icons/tb';
 import { NumberInputWithButtons } from '../NumberInput/NumberInput';
-import { Field, Form, FormRenderProps, FormSpy, useFormState } from 'react-final-form';
+import { Field, Form, FormRenderProps, FormSpy } from 'react-final-form';
+import { LoadingSpinner } from '@/components/atoms/LoadingSpinner/LoadingSpinner';
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 
 export const NewDishForm = () => {
-  const { handleValidate, onSubmit } = useNewDishForm();
+  const { submitError, handleValidate, onSubmit } = useNewDishForm();
 
   const renderSoupOptions = useCallback(
     (spiciness: string | undefined) => (
@@ -207,16 +210,12 @@ export const NewDishForm = () => {
             </div>
           </StyledRadioInputWrapper>
           {renderDishOptions(values)}
-          <button type="submit" disabled={submitting}>
-            Add new dish
-          </button>
-
-          <FormSpy
-            onChange={state => {
-              // console.clear();
-              // console.table(state.values);
-            }}
-          />
+          <StyledSubmit type="submit" disabled={submitting}>
+            <FormSpy>
+              {({ submitting }) => (submitting ? <LoadingSpinner /> : <p>Add new dish!</p>)}
+            </FormSpy>
+          </StyledSubmit>
+          {true && <ErrorMessage>{submitError}</ErrorMessage>}
         </StyledForm>
       )}
     />

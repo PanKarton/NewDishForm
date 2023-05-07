@@ -4,8 +4,7 @@ import styled from 'styled-components';
 export const StyledSection = styled.section`
   display: flex;
   justify-content: center;
-  padding-top: 2rem;
-  height: 100%;
+  padding-block: 3rem;
 `;
 
 export const NewDishFormSection = () => (

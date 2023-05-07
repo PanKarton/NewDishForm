@@ -1,5 +1,5 @@
 import { removePropertiesFromDish } from '@/helpers/removePropertiesFromDish';
-import { ChangeEvent, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export type DishData = {
   name: string;
@@ -12,6 +12,8 @@ export type DishData = {
 };
 
 export const useNewDishForm = () => {
+  const [submitError, setSubmitError] = useState('');
+
   const onSubmit = useCallback(async (dishData: DishData) => {
     try {
       const newData = removePropertiesFromDish(dishData);
@@ -31,9 +33,11 @@ export const useNewDishForm = () => {
 
       const response = await responseJSON.json();
 
-      console.log('response', response);
+      return { success: `Successfully added ${response.name} to your menu!` };
     } catch (err) {
-      console.log('useNewDishForm onSubmit error', { err });
+      setSubmitError(err.message);
+      // Hide error after 5sec
+      setTimeout(() => setSubmitError(''), 5000);
     }
   }, []);
 
@@ -72,9 +76,8 @@ export const useNewDishForm = () => {
   }, []);
 
   return {
+    submitError,
     handleValidate,
     onSubmit,
   };
 };
-
-// For submit

@@ -157,3 +157,19 @@ export const StyledRadioInputWrapper = styled.div`
     color: red;
   }
 `;
+
+export const StyledSubmit = styled.button`
+  background-color: ${({ theme }) => theme.color.adminPanel.secondaryAccent};
+  border: none;
+  border-radius: 0.25rem;
+  padding-block: 1rem;
+  width: 20rem;
+  color: ${({ theme }) => theme.color.adminPanel.primary};
+  font-size: 1.375rem;
+  margin-top: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.adminPanel.secondaryAccentHover};
+  }
+`;

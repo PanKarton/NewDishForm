@@ -19,6 +19,7 @@ export const theme = {
 
     // Error
     error: '#ff0000',
+    errorDarker: '#b20000',
     errorTransparent: 'hsla(0, 100%, 50%, 0.05)',
 
     // Border dividers
@@ -40,6 +41,7 @@ export const theme = {
 
       // Blue
       secondaryAccent: '#4796FE',
+      secondaryAccentHover: '#59a0fe',
       secondaryAccentLight: '#D4EBFF',
     },
   },
