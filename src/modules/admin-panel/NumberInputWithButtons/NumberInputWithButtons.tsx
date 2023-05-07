@@ -22,47 +22,72 @@ export const NumberInputWithButtons = ({
 }: NumberInputWithButtonsProps) => {
   const step = isFloat ? 0.1 : 1;
 
-  const handleIncrement = useCallback(() => {
-    if (value === undefined) return;
-    // Empty input has empty string as target.value, not 0
-    if (value === '') return setValue(`${step}`);
+  // const handleIncrement = useCallback(() => {
+  //   if (value === undefined) return;
+  //   // Empty input has empty string as target.value, not 0
+  //   if (value === '') return setValue(`${step}`);
 
-    let newValue: number | string;
+  //   let newValue: number | string;
 
-    if (typeof value === 'string') {
-      // Change string to number and add step
-      newValue = (isFloat ? parseFloat(value) : parseInt(value)) + step;
-      // Change number back to string and if step is 0.1, then leave one digit after decimal point because apparently 0.1 + 0.2 is not 0.3
-      newValue = newValue.toFixed(isFloat ? 1 : 0);
-    } else {
-      newValue = `${value + step}`;
-    }
+  //   if (typeof value === 'string') {
+  //     // Change string to number and add step
+  //     newValue = (isFloat ? parseFloat(value) : parseInt(value)) + step;
+  //     // Change number back to string and if step is 0.1, then leave one digit after decimal point because apparently 0.1 + 0.2 is not 0.3
+  //     newValue = newValue.toFixed(isFloat ? 1 : 0);
+  //   } else {
+  //     newValue = `${value + step}`;
+  //   }
 
-    setValue(newValue);
-  }, [setValue, value, step, isFloat]);
+  //   setValue(newValue);
+  // }, [setValue, value, step, isFloat]);
 
-  const handleDecrement = useCallback(() => {
-    // Empty input has empty string as targer.value, not 0
-    if (value === undefined || value === 0 || value === '0' || value === '0.0' || value === '')
-      return;
+  // const handleDecrement = useCallback(() => {
+  //   // Empty input has empty string as targer.value, not 0
+  //   if (value === undefined || value === 0 || value === '0' || value === '0.0' || value === '')
+  //     return;
 
-    let newValue: number | string;
+  //   let newValue: number | string;
 
-    if (typeof value === 'string') {
-      // Change string to number and add step
-      newValue = (isFloat ? parseFloat(value) : parseInt(value)) - step;
-      // Change number back to string and if step is 0.1, then leave one digit after decimal point because apparently 0.1 + 0.2 is not 0.3
-      newValue = newValue.toFixed(isFloat ? 1 : 0);
-    } else {
-      newValue = `${value - step}`;
-    }
+  //   if (typeof value === 'string') {
+  //     // Change string to number and add step
+  //     newValue = (isFloat ? parseFloat(value) : parseInt(value)) - step;
+  //     // Change number back to string and if step is 0.1, then leave one digit after decimal point because apparently 0.1 + 0.2 is not 0.3
+  //     newValue = newValue.toFixed(isFloat ? 1 : 0);
+  //   } else {
+  //     newValue = `${value - step}`;
+  //   }
 
-    setValue(newValue);
-  }, [setValue, value, step, isFloat]);
+  //   setValue(newValue);
+  // }, [setValue, value, step, isFloat]);
+
+  const handleStep = useCallback(
+    (isIncrement: boolean) => {
+      if (value === undefined) return;
+      // Return if there are any scenarios with decrementing empty string
+      if ((value === 0 || value === '0' || value === '0.0' || value === '') && !isIncrement) return;
+
+      // Add negative number if is decrement
+      const newStep = isIncrement ? step : step * -1;
+
+      let newValue: number | string;
+
+      if (typeof value === 'string') {
+        // Change string to number and add step
+        newValue = (isFloat ? parseFloat(value) : parseInt(value)) + newStep;
+        // Change number back to string and if step is 0.1, then leave one digit after decimal point because apparently 0.1 + 0.2 is not 0.3
+        newValue = newValue.toFixed(isFloat ? 1 : 0);
+      } else {
+        newValue = `${value + newStep}`;
+      }
+
+      setValue(newValue);
+    },
+    [isFloat, setValue, value, step]
+  );
 
   return (
     <StyledWrapper>
-      <StyledButton onClick={handleDecrement}>
+      <StyledButton onClick={() => handleStep(false)}>
         <AiOutlineMinus />
       </StyledButton>
       <StyledInput
@@ -79,7 +104,7 @@ export const NumberInputWithButtons = ({
           }
         }}
       />
-      <StyledButton onClick={handleIncrement}>
+      <StyledButton onClick={() => handleStep(true)}>
         <AiOutlinePlus />
       </StyledButton>
     </StyledWrapper>
