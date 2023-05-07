@@ -1,25 +1,15 @@
 import { useCallback } from 'react';
-import styled from 'styled-components';
+import { StyledForm, StyledInput, StyledInputWrapper } from './NewDishForm.styles';
 import { useNewDishForm } from './useNewDishForm';
-
-export const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: min(30rem, 90%);
-`;
-export const StyledInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 export const NewDishForm = () => {
   const { dishData, handleUpdateDishData } = useNewDishForm();
 
   const renderSoupOptions = useCallback(
     () => (
-      <div>
+      <StyledInputWrapper>
         <label htmlFor="spiciness_scale">Spiciness (1-10):</label>
-        <input
+        <StyledInput
           type="range"
           id="spiciness_scale"
           name="spiciness_scale"
@@ -28,7 +18,7 @@ export const NewDishForm = () => {
           value={dishData.spiciness_scale}
           onChange={handleUpdateDishData}
         />
-      </div>
+      </StyledInputWrapper>
     ),
     [dishData.spiciness_scale, handleUpdateDishData]
   );
@@ -36,19 +26,19 @@ export const NewDishForm = () => {
   const renderPizzaOptions = useCallback(
     () => (
       <>
-        <div>
+        <StyledInputWrapper>
           <label htmlFor="no_of_slices">Number of slices:</label>
-          <input
+          <StyledInput
             type="number"
             id="no_of_slices"
             name="no_of_slices"
             value={dishData.no_of_slices}
             onChange={handleUpdateDishData}
           />
-        </div>
-        <div>
+        </StyledInputWrapper>
+        <StyledInputWrapper>
           <label htmlFor="diameter">Diameter:</label>
-          <input
+          <StyledInput
             type="number"
             step="0.1"
             id="diameter"
@@ -56,7 +46,7 @@ export const NewDishForm = () => {
             value={dishData.diameter}
             onChange={handleUpdateDishData}
           />
-        </div>
+        </StyledInputWrapper>
       </>
     ),
     [dishData.no_of_slices, dishData.diameter, handleUpdateDishData]
@@ -65,16 +55,16 @@ export const NewDishForm = () => {
   const renderSandwichOptions = useCallback(
     () => (
       <>
-        <div>
+        <StyledInputWrapper>
           <label htmlFor="slices_of_bread">Slices of bread:</label>
-          <input
+          <StyledInput
             type="number"
             id="slices_of_bread"
             name="slices_of_bread"
             value={dishData.slices_of_bread}
             onChange={handleUpdateDishData}
           />
-        </div>
+        </StyledInputWrapper>
       </>
     ),
     [dishData.slices_of_bread, handleUpdateDishData]
@@ -91,17 +81,17 @@ export const NewDishForm = () => {
     <StyledForm>
       <StyledInputWrapper>
         <label>Dish name:</label>
-        <input type="text" name="name" onChange={handleUpdateDishData} />
+        <StyledInput type="text" name="name" onChange={handleUpdateDishData} />
       </StyledInputWrapper>
       <StyledInputWrapper>
         <label>Preparation time (hh:mm:ss):</label>
-        <input
+        <StyledInput
           name="preparation_time"
           value={dishData.preparation_time}
           onChange={handleUpdateDishData}
           type="time"
           step="1"
-        ></input>
+        ></StyledInput>
       </StyledInputWrapper>
 
       <StyledInputWrapper>

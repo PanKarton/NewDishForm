@@ -37,6 +37,10 @@ export const theme = {
       primaryAccent: '#2a3143',
       primaryAccentLighter: '#b9d1fe',
       primaryAccentLightest: '#ccdefe',
+
+      // Blue
+      secondaryAccent: '#4796FE',
+      secondaryAccentLight: '#D4EBFF',
     },
   },
 
