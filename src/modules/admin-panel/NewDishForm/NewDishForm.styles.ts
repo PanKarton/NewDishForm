@@ -21,13 +21,18 @@ export const StyledInputWrapper = styled.div`
     font-size: 1.25rem;
     font-weight: 600;
   }
+
+  .spiciness-display {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
 `;
 
 export const StyledInput = styled.input`
   color: ${({ theme }) => theme.color.adminPanel.contrastLighter};
-  border: 2px solid ${({ theme }) => theme.color.adminPanel.contrastLighter};
+  border: 2px solid ${({ theme }) => theme.color.adminPanel.secondaryAccentLight};
   padding: 0.5rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   border-radius: 0.25rem;
   width: 30rem;
 
@@ -39,5 +44,100 @@ export const StyledInput = styled.input`
   &:focus {
     border: 2px solid ${({ theme }) => theme.color.adminPanel.secondaryAccent};
     outline: none;
+  }
+`;
+
+export const StyleddRangeInput = styled.input`
+  width: 30rem;
+
+  -webkit-appearance: none;
+  height: 20px;
+  width: 80%;
+  margin: 0;
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: ${({ theme }) => theme.color.adminPanel.secondaryAccentLight};
+    border: none;
+    border-radius: 3px;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.color.adminPanel.secondaryAccent};
+    margin-top: -8px;
+    cursor: pointer;
+  }
+`;
+
+export const StyledRadioInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid ${({ theme }) => theme.color.borderDivider};
+  color: ${({ theme }) => theme.color.adminPanel.contrastLighter};
+  width: 100%;
+  padding: 2rem 1rem;
+
+  .dish-type {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .inputs-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+
+    div {
+      flex-basis: 7rem;
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+
+        input {
+          appearance: none;
+        }
+
+        span {
+          font-size: 1.25rem;
+        }
+
+        .icon-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          background-color: ${({ theme }) => theme.color.adminPanel.secondaryAccentLight};
+          svg {
+            color: ${({ theme }) => theme.color.adminPanel.secondaryAccent};
+            font-size: 3rem;
+          }
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:has(input:checked) .icon-wrapper {
+        background-color: ${({ theme }) => theme.color.adminPanel.secondaryAccent};
+        border: 0.25rem solid ${({ theme }) => theme.color.adminPanel.secondaryAccentLight};
+
+        svg {
+          color: ${({ theme }) => theme.color.adminPanel.secondaryAccentLight};
+        }
+      }
+    }
   }
 `;

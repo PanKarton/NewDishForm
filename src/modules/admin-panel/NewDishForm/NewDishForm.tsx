@@ -1,6 +1,15 @@
 import { useCallback } from 'react';
-import { StyledForm, StyledInput, StyledInputWrapper } from './NewDishForm.styles';
+import {
+  StyleddRangeInput,
+  StyledForm,
+  StyledInput,
+  StyledInputWrapper,
+  StyledRadioInputWrapper,
+} from './NewDishForm.styles';
 import { useNewDishForm } from './useNewDishForm';
+import { FaPizzaSlice } from 'react-icons/fa';
+import { BiBowlHot } from 'react-icons/bi';
+import { TbBread } from 'react-icons/tb';
 
 export const NewDishForm = () => {
   const { dishData, handleUpdateDishData } = useNewDishForm();
@@ -9,7 +18,7 @@ export const NewDishForm = () => {
     () => (
       <StyledInputWrapper>
         <label htmlFor="spiciness_scale">Spiciness (1-10):</label>
-        <StyledInput
+        <StyleddRangeInput
           type="range"
           id="spiciness_scale"
           name="spiciness_scale"
@@ -18,6 +27,7 @@ export const NewDishForm = () => {
           value={dishData.spiciness_scale}
           onChange={handleUpdateDishData}
         />
+        <div className="spiciness-display">{dishData.spiciness_scale}</div>
       </StyledInputWrapper>
     ),
     [dishData.spiciness_scale, handleUpdateDishData]
@@ -94,14 +104,56 @@ export const NewDishForm = () => {
         ></StyledInput>
       </StyledInputWrapper>
 
-      <StyledInputWrapper>
-        <label>Type:</label>
-        <select name="type" onChange={handleUpdateDishData}>
-          <option value="pizza">Pizza</option>
-          <option value="soup">Soup</option>
-          <option value="sandwich">Sandwich</option>
-        </select>
-      </StyledInputWrapper>
+      <StyledRadioInputWrapper>
+        <span className="dish-type">Dish type:</span>
+        <div className="inputs-wrapper">
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="pizza"
+                checked={dishData.type === 'pizza'}
+                onChange={handleUpdateDishData}
+              />
+              <div className="icon-wrapper">
+                <FaPizzaSlice />
+              </div>
+              <span>Pizza</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="sandwich"
+                checked={dishData.type === 'sandwich'}
+                onChange={handleUpdateDishData}
+              />
+              <div className="icon-wrapper">
+                <TbBread />
+              </div>
+              <span>Sandwich</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="soup"
+                checked={dishData.type === 'soup'}
+                onChange={handleUpdateDishData}
+              />
+              <div className="icon-wrapper">
+                <BiBowlHot />
+              </div>
+              <span>Soup</span>
+            </label>
+          </div>
+        </div>
+      </StyledRadioInputWrapper>
       {renderDishOptions()}
       <input type="submit" value="Submit" />
     </StyledForm>
