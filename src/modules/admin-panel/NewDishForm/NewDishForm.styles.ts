@@ -26,6 +26,10 @@ export const StyledInputWrapper = styled.div`
     font-size: ${({ theme }) => theme.fontSize.textXL};
     font-weight: 600;
   }
+
+  .error-message {
+    color: ${({ theme }) => theme.color.error};
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -35,6 +39,7 @@ export const StyledInput = styled.input`
   font-size: ${({ theme }) => theme.fontSize.textXL};
   border-radius: 0.25rem;
   width: 30rem;
+  text-align: center;
 
   &:hover,
   &::-webkit-calendar-picker-indicator:hover {
@@ -83,11 +88,13 @@ export const StyledRadioInputWrapper = styled.div`
   color: ${({ theme }) => theme.color.adminPanel.contrastLighter};
   width: 100%;
   padding: 2rem 1rem;
+  position: relative;
 
   .dish-type {
     font-size: ${({ theme }) => theme.fontSize.textXL};
     font-weight: 600;
   }
+
   .inputs-wrapper {
     width: 100%;
     display: flex;
@@ -139,5 +146,14 @@ export const StyledRadioInputWrapper = styled.div`
         }
       }
     }
+  }
+  .error-message {
+    position: absolute;
+    left: 50%;
+    bottom: 0.5rem;
+    translate: -50% 0;
+    width: max-content;
+
+    color: red;
   }
 `;

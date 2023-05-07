@@ -13,17 +13,6 @@ export const StyledWrapper = styled.div`
     outline: 2px solid ${({ theme }) => theme.color.adminPanel.secondaryAccent};
   }
 `;
-export const StyledButton = styled.button`
-  background-color: ${({ theme }) => theme.color.adminPanel.secondaryAccent};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 0.5rem;
-  color: white;
-  cursor: pointer;
-  font-size: ${({ theme }) => theme.fontSize.textXL};
-  border: none;
-`;
 
 export const StyledInput = styled.input`
   border: none;
@@ -33,5 +22,10 @@ export const StyledInput = styled.input`
   &:focus {
     border: none;
     outline: none;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;

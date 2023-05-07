@@ -10,38 +10,55 @@ export type DishData = {
   slices_of_bread?: string;
 };
 
-const initDishData = {
-  name: '',
-  preparation_time: '',
-  type: 'pizza',
-  no_of_slices: '0',
-  diameter: '0',
-  spiciness_scale: '0',
-  slices_of_bread: '0',
-};
-
 export const useNewDishForm = () => {
-  const [dishData, setDishData] = useState<DishData>(initDishData);
+  const onSubmit = useCallback((values: DishData) => {
+    console.table(values);
+  }, []);
 
-  // console.clear();
-  // console.table(dishData);
+  const handleValidate = useCallback((values: DishData) => {
+    const errors: Partial<DishData> = {};
 
-  const handleUpdateDishData = useCallback(
-    (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-      const { name, value } = e.target;
-
-      setDishData(prevData => ({
-        ...prevData,
-        [name]: value,
-      }));
-    },
-    []
-  );
+    if (!values.name) {
+      errors.name = 'Dish name required.';
+      console.log('Error z nazwwą');
+    }
+    if (!values.preparation_time) {
+      errors.preparation_time = 'Preparation time required.';
+      console.log('Error z czasem przygotowania');
+    }
+    if (!values.type) {
+      errors.type = 'Dish type required.';
+      console.log('Error z czasem przygotowania');
+    }
+    switch (values.type) {
+      case 'pizza':
+        if (!values.no_of_slices) {
+          errors.no_of_slices = 'Number of slices required.';
+          console.log('Error z no of slices');
+        }
+        if (!values.diameter) {
+          errors.diameter = 'Diameter required.';
+          console.log('Error z diameter');
+        }
+        break;
+      case 'soup':
+        if (!values.spiciness_scale) {
+          errors.spiciness_scale = 'Spiciness required.';
+          console.log('Error z spiciness');
+        }
+        break;
+      case 'sandwich':
+        if (!values.slices_of_bread) {
+          errors.slices_of_bread = 'Number of slices of bread required.';
+          console.log('Error z no of slices of breat');
+        }
+    }
+    return errors;
+  }, []);
 
   return {
-    dishData,
-    setDishData,
-    handleUpdateDishData,
+    handleValidate,
+    onSubmit,
   };
 };
 

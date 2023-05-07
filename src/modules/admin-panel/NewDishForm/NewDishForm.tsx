@@ -6,157 +6,219 @@ import {
   StyledInputWrapper,
   StyledRadioInputWrapper,
 } from './NewDishForm.styles';
-import { useNewDishForm } from './useNewDishForm';
+import { DishData, useNewDishForm } from './useNewDishForm';
 import { FaPizzaSlice } from 'react-icons/fa';
 import { BiBowlHot } from 'react-icons/bi';
 import { TbBread } from 'react-icons/tb';
-import { NumberInputWithButtons } from '../NumberInputWithButtons/NumberInputWithButtons';
+import { NumberInputWithButtons } from '../NumberInput/NumberInput';
+import { Field, Form, FormRenderProps, FormSpy, useFormState } from 'react-final-form';
 
 export const NewDishForm = () => {
-  const { dishData, setDishData, handleUpdateDishData } = useNewDishForm();
+  const { handleValidate, onSubmit } = useNewDishForm();
 
   const renderSoupOptions = useCallback(
-    () => (
-      <StyledInputWrapper>
-        <label htmlFor="spiciness_scale">Spiciness (1-10):</label>
-        <StyleddRangeInput
-          type="range"
-          id="spiciness_scale"
-          name="spiciness_scale"
-          min="1"
-          max="10"
-          value={dishData.spiciness_scale}
-          onChange={handleUpdateDishData}
-        />
-        <div className="spiciness-display">{dishData.spiciness_scale}</div>
-      </StyledInputWrapper>
+    (spiciness: string | undefined) => (
+      <Field name="spiciness_scale">
+        {({ input, meta }) => (
+          <StyledInputWrapper>
+            <label htmlFor="spiciness_scale">Spiciness (1-10):</label>
+            <StyleddRangeInput
+              type="range"
+              {...input}
+              min="1"
+              max="10"
+              onChange={event => {
+                input.onChange(event);
+              }}
+            />
+            <div className="spiciness-display">{spiciness}</div>
+            {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
+          </StyledInputWrapper>
+        )}
+      </Field>
     ),
-    [dishData.spiciness_scale, handleUpdateDishData]
+    []
   );
 
   const renderPizzaOptions = useCallback(
     () => (
       <>
-        <StyledInputWrapper>
-          <label htmlFor="no_of_slices">Number of slices:</label>
-          <NumberInputWithButtons
-            id="no_of_slices"
-            name="no_of_slices"
-            value={dishData.no_of_slices}
-            onChange={handleUpdateDishData}
-            setValue={value => setDishData(prevData => ({ ...prevData, no_of_slices: value }))}
-          />
-        </StyledInputWrapper>
-        <StyledInputWrapper>
-          <label htmlFor="diameter">Diameter:</label>
-          <NumberInputWithButtons
-            id="diameter"
-            name="diameter"
-            isFloat
-            value={dishData.diameter}
-            onChange={handleUpdateDishData}
-            setValue={value => setDishData(prevData => ({ ...prevData, diameter: value }))}
-          />
-        </StyledInputWrapper>
+        <Field name="no_of_slices">
+          {({ input, meta }) => (
+            <StyledInputWrapper>
+              <label htmlFor="no_of_slices">Number of slices:</label>
+              <StyledInput {...input} id="no_of_slices" onChange={event => input.onChange(event)} />
+              {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
+            </StyledInputWrapper>
+          )}
+        </Field>
+        <Field name="diameter">
+          {({ input, meta }) => (
+            <StyledInputWrapper>
+              <label htmlFor="diameter">Number of slices:</label>
+              <NumberInputWithButtons
+                {...input}
+                id="diameter"
+                onChange={event => input.onChange(event)}
+              />
+              {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
+            </StyledInputWrapper>
+          )}
+        </Field>
       </>
     ),
-    [dishData.no_of_slices, dishData.diameter, handleUpdateDishData, setDishData]
+    []
   );
 
   const renderSandwichOptions = useCallback(
     () => (
       <>
-        <StyledInputWrapper>
-          <label htmlFor="slices_of_bread">Slices of bread:</label>
-          <NumberInputWithButtons
-            id="slices_of_bread"
-            name="slices_of_bread"
-            value={dishData.slices_of_bread}
-            onChange={handleUpdateDishData}
-            setValue={value => setDishData(prevData => ({ ...prevData, slices_of_bread: value }))}
-          />
-        </StyledInputWrapper>
+        <Field name="slices_of_bread">
+          {({ input, meta }) => (
+            <StyledInputWrapper>
+              <label htmlFor="slices_of_bread">Slices of bread:</label>
+              <NumberInputWithButtons
+                {...input}
+                id="slices_of_bread"
+                onChange={event => input.onChange(event)}
+              />
+              {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
+            </StyledInputWrapper>
+          )}
+        </Field>
       </>
     ),
-    [dishData.slices_of_bread, handleUpdateDishData, setDishData]
+    []
   );
 
-  const renderDishOptions = useCallback(() => {
-    if (dishData.type === '') return null;
-    if (dishData.type === 'soup') return renderSoupOptions();
-    if (dishData.type === 'pizza') return renderPizzaOptions();
-    if (dishData.type === 'sandwich') return renderSandwichOptions();
-  }, [dishData.type, renderSoupOptions, renderPizzaOptions, renderSandwichOptions]);
+  const renderDishOptions = useCallback(
+    (values: Partial<DishData>) => {
+      if (values.type === '') return null;
+      if (values.type === 'soup') return renderSoupOptions(values.spiciness_scale);
+      if (values.type === 'pizza') return renderPizzaOptions();
+      if (values.type === 'sandwich') return renderSandwichOptions();
+    },
+    [renderSoupOptions, renderPizzaOptions, renderSandwichOptions]
+  );
 
   return (
-    <StyledForm onSubmit={e => e.preventDefault()}>
-      <StyledInputWrapper>
-        <label>Dish name:</label>
-        <StyledInput type="text" name="name" onChange={handleUpdateDishData} />
-      </StyledInputWrapper>
-      <StyledInputWrapper>
-        <label>Preparation time (hh:mm:ss):</label>
-        <StyledInput
-          name="preparation_time"
-          value={dishData.preparation_time}
-          onChange={handleUpdateDishData}
-          type="time"
-          step="1"
-        ></StyledInput>
-      </StyledInputWrapper>
+    <Form
+      onSubmit={onSubmit}
+      validate={handleValidate}
+      render={({ handleSubmit, submitting, values }: FormRenderProps<DishData>) => (
+        <StyledForm onSubmit={handleSubmit}>
+          <Field name="name">
+            {({ input, meta }) => (
+              <StyledInputWrapper>
+                <label>Dish name:</label>
+                <StyledInput
+                  {...input}
+                  type="text"
+                  onChange={event => {
+                    input.onChange(event);
+                  }}
+                />
+                {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
+              </StyledInputWrapper>
+            )}
+          </Field>
+          <Field name="preparation_time">
+            {({ input, meta }) => (
+              <StyledInputWrapper>
+                <label>Preparation time (hh:mm:ss):</label>
+                <StyledInput
+                  {...input}
+                  onChange={event => {
+                    input.onChange(event);
+                  }}
+                  type="time"
+                  step="1"
+                ></StyledInput>
+                {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
+              </StyledInputWrapper>
+            )}
+          </Field>
+          <StyledRadioInputWrapper>
+            <span className="dish-type">Dish type:</span>
+            <div className="inputs-wrapper">
+              <Field name="type" type="radio">
+                {({ input }) => (
+                  <div>
+                    <label>
+                      <input
+                        {...input}
+                        value="pizza"
+                        checked={values.type === 'pizza'}
+                        onChange={event => {
+                          input.onChange(event);
+                        }}
+                      />
+                      <div className="icon-wrapper">
+                        <FaPizzaSlice />
+                      </div>
+                      <span>Pizza</span>
+                    </label>
+                  </div>
+                )}
+              </Field>
+              <Field name="type" type="radio">
+                {({ input, meta }) => (
+                  <div>
+                    <label>
+                      <input
+                        {...input}
+                        value="sandwich"
+                        checked={values.type === 'sandwich'}
+                        onChange={event => {
+                          input.onChange(event);
+                        }}
+                      />
+                      <div className="icon-wrapper">
+                        <TbBread />
+                      </div>
+                      <span>Sandwich</span>
+                    </label>
+                    {meta.error && meta.touched && (
+                      <span className="error-message">{meta.error}</span>
+                    )}
+                  </div>
+                )}
+              </Field>
+              <Field name="type" type="radio">
+                {({ input }) => (
+                  <div>
+                    <label>
+                      <input
+                        {...input}
+                        value="soup"
+                        checked={values.type === 'soup'}
+                        onChange={event => {
+                          input.onChange(event);
+                        }}
+                      />
+                      <div className="icon-wrapper">
+                        <BiBowlHot />
+                      </div>
+                      <span>Soup</span>
+                    </label>
+                  </div>
+                )}
+              </Field>
+            </div>
+          </StyledRadioInputWrapper>
+          {renderDishOptions(values)}
+          <button type="submit" disabled={submitting}>
+            Add new dish
+          </button>
 
-      <StyledRadioInputWrapper>
-        <span className="dish-type">Dish type:</span>
-        <div className="inputs-wrapper">
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="pizza"
-                checked={dishData.type === 'pizza'}
-                onChange={handleUpdateDishData}
-              />
-              <div className="icon-wrapper">
-                <FaPizzaSlice />
-              </div>
-              <span>Pizza</span>
-            </label>
-          </div>
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="sandwich"
-                checked={dishData.type === 'sandwich'}
-                onChange={handleUpdateDishData}
-              />
-              <div className="icon-wrapper">
-                <TbBread />
-              </div>
-              <span>Sandwich</span>
-            </label>
-          </div>
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="type"
-                value="soup"
-                checked={dishData.type === 'soup'}
-                onChange={handleUpdateDishData}
-              />
-              <div className="icon-wrapper">
-                <BiBowlHot />
-              </div>
-              <span>Soup</span>
-            </label>
-          </div>
-        </div>
-      </StyledRadioInputWrapper>
-      {renderDishOptions()}
-      <input type="submit" value="Submit" />
-    </StyledForm>
+          <FormSpy
+            onChange={state => {
+              // console.clear();
+              // console.table(state.values);
+            }}
+          />
+        </StyledForm>
+      )}
+    />
   );
 };
