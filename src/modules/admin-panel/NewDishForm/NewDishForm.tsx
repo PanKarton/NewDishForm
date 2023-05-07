@@ -10,9 +10,10 @@ import { useNewDishForm } from './useNewDishForm';
 import { FaPizzaSlice } from 'react-icons/fa';
 import { BiBowlHot } from 'react-icons/bi';
 import { TbBread } from 'react-icons/tb';
+import { IntigerNumberInput } from '../IntigerNumberInput/IntigerNumberInput';
 
 export const NewDishForm = () => {
-  const { dishData, handleUpdateDishData } = useNewDishForm();
+  const { dishData, setDishData, handleUpdateDishData } = useNewDishForm();
 
   const renderSoupOptions = useCallback(
     () => (
@@ -38,12 +39,12 @@ export const NewDishForm = () => {
       <>
         <StyledInputWrapper>
           <label htmlFor="no_of_slices">Number of slices:</label>
-          <StyledInput
-            type="number"
+          <IntigerNumberInput
             id="no_of_slices"
             name="no_of_slices"
             value={dishData.no_of_slices}
             onChange={handleUpdateDishData}
+            setValue={value => setDishData(prevData => ({ ...prevData, no_of_slices: value }))}
           />
         </StyledInputWrapper>
         <StyledInputWrapper>
@@ -59,7 +60,7 @@ export const NewDishForm = () => {
         </StyledInputWrapper>
       </>
     ),
-    [dishData.no_of_slices, dishData.diameter, handleUpdateDishData]
+    [dishData.no_of_slices, dishData.diameter, handleUpdateDishData, setDishData]
   );
 
   const renderSandwichOptions = useCallback(
@@ -88,7 +89,7 @@ export const NewDishForm = () => {
   }, [dishData.type, renderSoupOptions, renderPizzaOptions, renderSandwichOptions]);
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={e => e.preventDefault()}>
       <StyledInputWrapper>
         <label>Dish name:</label>
         <StyledInput type="text" name="name" onChange={handleUpdateDishData} />

@@ -33,21 +33,6 @@ export const useNewDishForm = () => {
 
       let newValue: number | string = value;
 
-      //   Transform to float/int
-      if (
-        (name === 'diameter' ||
-          name === 'no_of_slices' ||
-          name === 'spiciness_scale' ||
-          name === 'slices_of_bread') &&
-        newValue === ''
-      ) {
-        return console.log('dzialam');
-      }
-
-      if (name === 'diameter') newValue = parseFloat(value) || 0;
-      if (name === 'no_of_slices' || name === 'spiciness_scale' || name === 'slices_of_bread')
-        newValue = parseInt(value) || 0;
-
       setDishData(prevData => ({
         ...prevData,
         [name]: newValue,
@@ -55,8 +40,16 @@ export const useNewDishForm = () => {
     },
     []
   );
+
   return {
     dishData,
+    setDishData,
     handleUpdateDishData,
   };
 };
+
+// For submit
+
+// if (name === 'diameter') newValue = parseFloat(value) || 0;
+// if (name === 'no_of_slices' || name === 'spiciness_scale' || name === 'slices_of_bread')
+//   newValue = parseInt(value) || 0;
