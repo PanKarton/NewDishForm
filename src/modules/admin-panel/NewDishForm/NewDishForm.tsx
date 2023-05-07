@@ -55,7 +55,7 @@ export const NewDishForm = () => {
         <Field name="diameter">
           {({ input, meta }) => (
             <StyledInputWrapper>
-              <label htmlFor="diameter">Number of slices:</label>
+              <label htmlFor="diameter">Diameter (cm):</label>
               <NumberInputWithButtons
                 {...input}
                 id="diameter"

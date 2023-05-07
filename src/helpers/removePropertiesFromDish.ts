@@ -2,10 +2,10 @@ import { DishData } from '@/modules/admin-panel/NewDishForm/useNewDishForm';
 
 type DishType = DishData['type'];
 
-export const removePropertiesFromDish = (dishData: DishData, dishType: DishType) => {
+export const removePropertiesFromDish = (dishData: DishData) => {
   const dish = { ...dishData };
 
-  switch (dishType) {
+  switch (dishData.type) {
     case 'pizza':
       delete dish.spiciness_scale;
       delete dish.slices_of_bread;
