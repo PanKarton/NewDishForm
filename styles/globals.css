@@ -2,7 +2,7 @@
 
 html {
   box-sizing: border-box;
-  font-family: 'Open Sans';
+  font-family: var(--open-sans);
 }
 
 *,
