@@ -1,4 +1,5 @@
 This is my recuritment task where I was supposed to create a form for adding new dish with POST request.
+This app is built using Next.js - a React framework that allows you to build web apps with server-side rendering, additional performance optimization, routing, and more.
 
 ## Node and npm
 
@@ -7,8 +8,13 @@ Node.js v18.16.0
 npm v.9.5.1
 
 ## Getting Started
+First download project:
 
-First, install all dependencies:
+-  Download project with command ```git clone https://github.com/PanKarton/NewDishForm.git```
+- Get to the project folder ```cd NewDishForm``` 
+
+
+Then, install all dependencies:
 
 ```bash
 npm install
