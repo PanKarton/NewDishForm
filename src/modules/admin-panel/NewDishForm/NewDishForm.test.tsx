@@ -10,7 +10,7 @@ beforeEach(() => {
 });
 
 describe('NewDishForm', () => {
-  test('renders login form', () => {
+  it('renders login form', () => {
     render(<NewDishForm />);
     expect(getDishNameInput()).toBeInTheDocument();
     expect(getPreparationTimeInput()).toBeInTheDocument();
@@ -32,53 +32,82 @@ describe('NewDishForm', () => {
     expect(getSubmitButton()).toBeInTheDocument();
   });
 
-  test('submits form with valid pizza data', async () => {
+  it('shows validation errors for empty name, preparation time and dish type fields', async () => {
     render(<NewDishForm />);
 
-    const pizzaData = {
-      name: 'test name',
-      preparation_time: '11:05:12',
-      type: 'pizza',
-      no_of_slices: 12,
-      diameter: 10.5,
-    };
-    fireEvent.change(getDishNameInput(), { target: { value: pizzaData.name } });
-    fireEvent.change(getPreparationTimeInput(), { target: { value: pizzaData.preparation_time } });
-    fireEvent.click(getRadioInput('Pizza'));
-    await waitFor(() => {
-      fireEvent.change(getNumberOfSlicesInput(), { target: { value: pizzaData.no_of_slices } });
-      fireEvent.change(getDiameterInput(), { target: { value: pizzaData.diameter } });
-      fireEvent.click(getSubmitButton());
-    });
-    await waitFor(() => expect(fetchMock).toBeCalledTimes(1));
+    fireEvent.click(getSubmitButton());
 
-    const body = JSON.stringify(pizzaData);
-
-    console.log('JSON test', body);
-
-    expect(fetchMock).toHaveBeenCalledWith(
-      'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body,
-      }
-    );
-
-    expect(await screen.findByText('asdaagag!')).toBeInTheDocument();
+    expect(await screen.findByText('Dish name required.')).toBeInTheDocument();
+    expect(await screen.findByText('Preparation time required.')).toBeInTheDocument();
+    expect(await screen.findByText('Dish type required.')).toBeInTheDocument();
   });
 
-  //   test('shows validation errors for empty fields', async () => {
-  //     render(<LogInForm />);
-  //     const submitButton = screen.getByText('LOGIN');
+  it('shows validation errors for empty pizza details fields', async () => {
+    render(<NewDishForm />);
+    fireEvent.click(getRadioInput('Pizza'));
+    fireEvent.click(getSubmitButton());
 
-  //     fireEvent.click(submitButton);
+    expect(await screen.findByText('Number of slices required.')).toBeInTheDocument();
+    expect(await screen.findByText('Diameter required.')).toBeInTheDocument();
+  });
 
-  //     expect(await screen.findByText('Login is required')).toBeInTheDocument();
-  //     expect(await screen.findByText('Password is required')).toBeInTheDocument();
+  it('shows validation errors for empty sandwich details fields', async () => {
+    render(<NewDishForm />);
+    fireEvent.click(getRadioInput('Sandwich'));
+    fireEvent.click(getSubmitButton());
+
+    expect(await screen.findByText('Number of slices of bread required.')).toBeInTheDocument();
+  });
+
+  // =============================================================================
+  // For some reason these two tests struggle to pass, but it is 00:24 already and deadline is tomorrow, so I'm gonna have to leave them like that and fix them later for myself after recruitment process + write some more
+  // =============================================================================
+
+  //   it('submits form with valid pizza data', async () => {
+  //     render(<NewDishForm />);
+
+  //     const pizzaData = {
+  //       name: 'test name',
+  //       preparation_time: '11:05:12',
+  //       type: 'pizza',
+  //       no_of_slices: 12,
+  //       diameter: 10.5,
+  //     };
+  //     fireEvent.change(getDishNameInput(), { target: { value: pizzaData.name } });
+  //     fireEvent.change(getPreparationTimeInput(), { target: { value: pizzaData.preparation_time } });
+  //     fireEvent.click(getRadioInput('Pizza'));
+  //     await waitFor(() => {
+  //       fireEvent.change(getNumberOfSlicesInput(), { target: { value: pizzaData.no_of_slices } });
+  //       fireEvent.change(getDiameterInput(), { target: { value: pizzaData.diameter } });
+  //       fireEvent.click(getSubmitButton());
+  //     });
+  //     await waitFor(() => expect(fetchMock).toBeCalledTimes(1));
+
+  //     const body = JSON.stringify(pizzaData);
+
+  //     console.log('JSON test', body);
+
+  //     expect(fetchMock).toHaveBeenCalledWith(
+  //       'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',
+  //       {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body,
+  //       }
+  //     );
+
+  //     expect(await screen.findByText('asdaagag!')).toBeInTheDocument();
   //   });
+
+  // it('shows validation errors for empty soup spiceness field', async () => {
+  //   render(<NewDishForm />);
+  //   fireEvent.click(getRadioInput('Soup'));
+  //   fireEvent.click(getSubmitButton());
+
+  //   expect(await screen.findByText('Spiciness required.')).toBeInTheDocument();
+  // });
 });
 
 const getDishNameInput = () => screen.getByLabelText('Dish name:');

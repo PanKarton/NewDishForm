@@ -84,6 +84,7 @@ export const NewDishForm = () => {
                 name="type"
                 dishName="Sandwich"
                 value="sandwich"
+                hasError
               >
                 <TbBread />
               </NewDishFormRadioInput>

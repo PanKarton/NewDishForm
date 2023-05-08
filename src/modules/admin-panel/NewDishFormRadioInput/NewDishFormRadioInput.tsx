@@ -7,6 +7,7 @@ type NewDishFormRadioInputTypes = {
   dishType: string;
   dishName: string;
   value: string;
+  hasError?: boolean;
   children: ReactNode;
 };
 
@@ -16,6 +17,7 @@ export const NewDishFormRadioInput = ({
   dishType,
   dishName,
   value,
+  hasError,
 }: NewDishFormRadioInputTypes) => (
   <Field name={name} type="radio">
     {({ input, meta }) => (
@@ -32,7 +34,9 @@ export const NewDishFormRadioInput = ({
           <div className="icon-wrapper">{children}</div>
           <span>{dishName}</span>
         </label>
-        {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
+        {meta.error && meta.touched && hasError && (
+          <span className="error-message">{meta.error}</span>
+        )}
       </StyledWrapper>
     )}
   </Field>
