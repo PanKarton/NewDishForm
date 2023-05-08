@@ -1,8 +1,14 @@
-import { DishData } from '@/modules/admin-panel/NewDishForm/useNewDishForm';
+type DishType = {
+  no_of_slices: number | undefined;
+  diameter: number | undefined;
+  spiciness_scale: number | undefined;
+  slices_of_bread: number | undefined;
+  name: string;
+  preparation_time: string;
+  type: string;
+};
 
-type DishType = DishData['type'];
-
-export const removePropertiesFromDish = (dishData: DishData) => {
+export const removePropertiesFromDish = (dishData: DishType) => {
   const dish = { ...dishData };
 
   switch (dishData.type) {

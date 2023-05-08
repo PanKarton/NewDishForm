@@ -17,9 +17,22 @@ export const useNewDishForm = () => {
 
   const onSubmit = useCallback(async (dishData: DishData) => {
     try {
-      const newData = removePropertiesFromDish(dishData);
+      // Change string values to number
+      const { no_of_slices, diameter, slices_of_bread, spiciness_scale, ...rest } = dishData;
+
+      let newData = {
+        ...rest,
+        no_of_slices: no_of_slices ? parseInt(no_of_slices, 10) : undefined,
+        diameter: diameter ? parseFloat(diameter) : undefined,
+        spiciness_scale: spiciness_scale ? parseInt(spiciness_scale, 10) : undefined,
+        slices_of_bread: slices_of_bread ? parseInt(slices_of_bread, 10) : undefined,
+      };
+
+      newData = removePropertiesFromDish(newData);
 
       const body = JSON.stringify(newData);
+
+      console.log('JSON useNewDishForm', body);
 
       const responseJSON = await fetch(
         'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',

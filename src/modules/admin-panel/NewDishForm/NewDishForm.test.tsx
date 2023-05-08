@@ -1,7 +1,13 @@
 import { render, fireEvent, waitFor, screen } from '../../../../testHelpers/test-utils';
-import mockRouter from 'next-router-mock';
+import fetchMock from 'jest-fetch-mock';
 import '@testing-library/jest-dom';
 import { NewDishForm } from './NewDishForm';
+
+fetchMock.enableMocks();
+
+beforeEach(() => {
+  fetchMock.resetMocks();
+});
 
 describe('NewDishForm', () => {
   test('renders login form', () => {
@@ -27,20 +33,41 @@ describe('NewDishForm', () => {
   });
 
   test('submits form with valid pizza data', async () => {
-    const { getByLabelText, getByText } = render(<NewDishForm />);
-    const nameInput = getByLabelText('Dish name:');
-    const preparationTimeInput = getByLabelText('Preparation time (hh:mm:ss):');
-    const pizzaRadioInput = getByLabelText('Pizza');
-    const submitButton = getByText('LOGIN');
+    render(<NewDishForm />);
 
-    fireEvent.change(emailInput, { target: { value: 'test name' } });
-    fireEvent.change(passwordInput, { target: { value: '11:05:12' } });
-    fireEvent.click(rememberMeCheckbox);
-    fireEvent.click(submitButton);
-
-    expect(mockRouter).toMatchObject({
-      pathname: '/admin-panel',
+    const pizzaData = {
+      name: 'test name',
+      preparation_time: '11:05:12',
+      type: 'pizza',
+      no_of_slices: 12,
+      diameter: 10.5,
+    };
+    fireEvent.change(getDishNameInput(), { target: { value: pizzaData.name } });
+    fireEvent.change(getPreparationTimeInput(), { target: { value: pizzaData.preparation_time } });
+    fireEvent.click(getRadioInput('Pizza'));
+    await waitFor(() => {
+      fireEvent.change(getNumberOfSlicesInput(), { target: { value: pizzaData.no_of_slices } });
+      fireEvent.change(getDiameterInput(), { target: { value: pizzaData.diameter } });
+      fireEvent.click(getSubmitButton());
     });
+    await waitFor(() => expect(fetchMock).toBeCalledTimes(1));
+
+    const body = JSON.stringify(pizzaData);
+
+    console.log('JSON test', body);
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      }
+    );
+
+    expect(await screen.findByText('asdaagag!')).toBeInTheDocument();
   });
 
   //   test('shows validation errors for empty fields', async () => {
@@ -60,5 +87,5 @@ const getRadioInput = (label: string) => screen.getByLabelText(label);
 const getSubmitButton = () => screen.getByText('Add new dish!');
 const getNumberOfSlicesInput = () => screen.getByLabelText('Number of slices:');
 const getDiameterInput = () => screen.getByLabelText('Diameter (cm):');
-const getNoOfSlicesOfBreadInput = () => screen.getByLabelText('Diameter (cm):');
+const getNoOfSlicesOfBreadInput = () => screen.getByLabelText('Number of slices of bread:');
 const getSpicinessInput = () => screen.getByLabelText('Spiciness (1-10):');
