@@ -215,7 +215,7 @@ export const NewDishForm = () => {
               {({ submitting }) => (submitting ? <LoadingSpinner /> : <p>Add new dish!</p>)}
             </FormSpy>
           </StyledSubmit>
-          {true && <ErrorMessage>{submitError}</ErrorMessage>}
+          {submitError && <ErrorMessage>{submitError}</ErrorMessage>}
         </StyledForm>
       )}
     />
