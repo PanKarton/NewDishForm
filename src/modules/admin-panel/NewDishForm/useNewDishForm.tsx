@@ -12,7 +12,6 @@ export type DishData = {
 };
 
 const URL = 'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/';
-
 export const useNewDishForm = () => {
   const [submitError, setSubmitError] = useState('');
   const [submitSuccessMessage, setSubmitSuccessMessage] = useState('');
