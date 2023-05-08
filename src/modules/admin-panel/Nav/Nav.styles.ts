@@ -14,7 +14,7 @@ export const StyledNav = styled.nav`
   @media screen and (min-width: 53rem) {
     translate: 0 0;
     grid-area: 1/1/3/2;
-    padding-top: 4rem;
+    padding-top: 4.5rem;
   }
 `;
 export const StyledList = styled.ul`

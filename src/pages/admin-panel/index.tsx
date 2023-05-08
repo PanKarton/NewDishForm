@@ -11,7 +11,10 @@ const AdminPanel = () => (
     </Head>
     <>
       <AdminDashboard heading="Admin dashboard">
-        <div>dashboard</div>
+        <div>
+          Was planning to create mock tiles ready for displaying data about how many people visit
+          page, how many and what dishes have been sold, but got run out of time
+        </div>
       </AdminDashboard>
     </>
   </>

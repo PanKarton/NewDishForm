@@ -13,6 +13,7 @@ export type DishData = {
 
 export const useNewDishForm = () => {
   const [submitError, setSubmitError] = useState('');
+  const [submitSuccessMessage, setSubmitSuccessMessage] = useState('');
 
   const onSubmit = useCallback(async (dishData: DishData) => {
     try {
@@ -33,9 +34,15 @@ export const useNewDishForm = () => {
 
       const response = await responseJSON.json();
 
-      console.table(response);
-
-      return { success: `Successfully added ${response.name} to your menu!` };
+      if (Object.keys(response).length === 1) {
+        setSubmitError(response.name);
+        // Hide error after 5sec
+        setTimeout(() => setSubmitError(''), 5000);
+      } else {
+        setSubmitSuccessMessage('New dish added!');
+        // Hide error after 5sec
+        setTimeout(() => setSubmitSuccessMessage(''), 3000);
+      }
     } catch (err) {
       setSubmitError(err.message);
       // Hide error after 5sec
@@ -79,6 +86,7 @@ export const useNewDishForm = () => {
 
   return {
     submitError,
+    submitSuccessMessage,
     handleValidate,
     onSubmit,
   };

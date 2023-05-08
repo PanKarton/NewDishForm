@@ -4,7 +4,7 @@ import { DishData, useNewDishForm } from './useNewDishForm';
 import { FaPizzaSlice } from 'react-icons/fa';
 import { BiBowlHot } from 'react-icons/bi';
 import { TbBread } from 'react-icons/tb';
-import { Field, Form, FormRenderProps, FormSpy } from 'react-final-form';
+import { Form, FormRenderProps, FormSpy } from 'react-final-form';
 import { LoadingSpinner } from '@/components/atoms/LoadingSpinner/LoadingSpinner';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 import { NewDishFormInput } from '../NewDishFormInput/NewDishFormInput';
@@ -12,7 +12,7 @@ import { NewDishFormRadioInput } from '../NewDishFormRadioInput/NewDishFormRadio
 import { NewDishFormRangeInput } from '../NewDishFormRangeInput/NewDishFormRangeInput';
 
 export const NewDishForm = () => {
-  const { submitError, handleValidate, onSubmit } = useNewDishForm();
+  const { submitError, submitSuccessMessage, handleValidate, onSubmit } = useNewDishForm();
 
   const renderSoupOptions = useCallback(
     (spiciness: string | undefined) => (
@@ -24,7 +24,7 @@ export const NewDishForm = () => {
   const renderPizzaOptions = useCallback(
     () => (
       <>
-        <NewDishFormInput name="no_of_slices" type="number" step="1" label="Numer of slices:" />
+        <NewDishFormInput name="no_of_slices" type="number" step="1" label="Number of slices:" />
         <NewDishFormInput name="diameter" type="number" step="0.1" label="Diameter (cm):" />
       </>
     ),
@@ -63,7 +63,7 @@ export const NewDishForm = () => {
         <StyledForm onSubmit={handleSubmit}>
           <NewDishFormInput name="name" label="Dish name:" type="text" />
           <NewDishFormInput
-            label="Preparation time (hh:mm:ss)"
+            label="Preparation time (hh:mm:ss):"
             name="preparation_time"
             type="time"
             step="1"
@@ -100,7 +100,12 @@ export const NewDishForm = () => {
           {renderDishOptions(values)}
           <StyledSubmit type="submit" disabled={submitting}>
             <FormSpy>
-              {({ submitting }) => (submitting ? <LoadingSpinner /> : <p>Add new dish!</p>)}
+              {({ submitting }) => {
+                // If submit successful, display success message
+                if (submitSuccessMessage) return <span>{submitSuccessMessage}</span>;
+                // Display loading spinner or default submit message
+                return submitting ? <LoadingSpinner /> : <p>Add new dish!</p>;
+              }}
             </FormSpy>
           </StyledSubmit>
           {submitError && <ErrorMessage>{submitError}</ErrorMessage>}

@@ -10,7 +10,7 @@ type AdminDashboardProps = {
 };
 
 export const AdminDashboard = ({ children, heading }: AdminDashboardProps) => {
-  const [isNavVisible, setNavVisible] = useState(true);
+  const [isNavVisible, setNavVisible] = useState(false);
 
   const toggleNav = useCallback(() => {
     setNavVisible(prevState => !prevState);
