@@ -9,7 +9,10 @@ export const StyledWrapper = styled.div`
   width: 100vw;
 
   .content-wrapper {
-    grid-area: 2/2/3/3;
+    grid-area: 2/1/3/3;
+    @media screen and (min-width: 53rem) {
+      grid-area: 2/2/3/3;
+    }
     overflow: scroll;
   }
 `;
