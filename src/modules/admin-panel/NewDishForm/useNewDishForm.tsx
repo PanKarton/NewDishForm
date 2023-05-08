@@ -11,6 +11,8 @@ export type DishData = {
   slices_of_bread?: string;
 };
 
+const URL = 'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/';
+
 export const useNewDishForm = () => {
   const [submitError, setSubmitError] = useState('');
   const [submitSuccessMessage, setSubmitSuccessMessage] = useState('');
@@ -32,16 +34,13 @@ export const useNewDishForm = () => {
 
       const body = JSON.stringify(newData);
 
-      const responseJSON = await fetch(
-        'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body,
-        }
-      );
+      const responseJSON = await fetch(URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      });
 
       const response = await responseJSON.json();
 
