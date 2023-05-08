@@ -10,16 +10,16 @@ type AdminDashboardProps = {
 };
 
 export const AdminDashboard = ({ children, heading }: AdminDashboardProps) => {
-  const [isNavHidden, setIsNavHidden] = useState(false);
+  const [isNavVisible, setNavVisible] = useState(true);
 
   const toggleNav = useCallback(() => {
-    setIsNavHidden(prevState => !prevState);
+    setNavVisible(prevState => !prevState);
   }, []);
 
   return (
     <StyledWrapper>
-      <Header heading={heading} toggleNav={toggleNav} isNavHidden={isNavHidden} />
-      <Nav isNavHidden={isNavHidden} />
+      <Header heading={heading} toggleNav={toggleNav} isNavVisible={isNavVisible} />
+      <Nav isNavHidden={isNavVisible} />
       <div className="content-wrapper">{children}</div>
     </StyledWrapper>
   );

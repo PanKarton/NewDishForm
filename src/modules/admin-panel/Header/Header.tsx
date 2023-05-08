@@ -5,12 +5,12 @@ import { FiLogOut } from 'react-icons/fi';
 import { StyledHeader, StyledHeading, UserInfoWrapper } from './Header.styles';
 
 type HeadingProps = {
-  isNavHidden: boolean;
+  isNavVisible: boolean;
   heading: string;
   toggleNav: () => void;
 };
 
-export const Header = ({ isNavHidden, heading, toggleNav }: HeadingProps) => {
+export const Header = ({ isNavVisible, heading, toggleNav }: HeadingProps) => {
   const router = useRouter();
 
   const handleLogOut = useCallback(() => {
@@ -22,7 +22,7 @@ export const Header = ({ isNavHidden, heading, toggleNav }: HeadingProps) => {
   return (
     <StyledHeader>
       <div className="hamburger-wrapper">
-        <HamburgerButton isActive={isNavHidden} onClick={toggleNav} />
+        <HamburgerButton isActive={isNavVisible} onClick={toggleNav} />
       </div>
       <StyledHeading>{heading}</StyledHeading>
       <UserInfoWrapper>

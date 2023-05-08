@@ -8,7 +8,7 @@ type NavProps = {
 
 export const Nav = ({ isNavHidden }: NavProps) => {
   return (
-    <StyledNav className={isNavHidden ? 'hidden' : ''}>
+    <StyledNav className={isNavHidden ? 'visible' : ''}>
       <StyledList>
         <li>
           <AdminPanelNavLink href="/admin-panel">

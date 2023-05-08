@@ -5,11 +5,10 @@ export const StyledHeader = styled.header`
   grid-area: 1 / 1 / 2 / 3;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   padding-inline: 1rem;
   @media screen and (min-width: 53rem) {
     grid-area: 1 / 2 / 2 / 3;
-    gap: 1rem;
     .hamburger-wrapper {
       display: none;
     }
@@ -26,11 +25,12 @@ export const StyledHeading = styled.h1`
 export const UserInfoWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  /* gap: 0.5rem; */
   font-size: ${({ theme }) => theme.fontSize.textBase};
   margin-left: auto;
 
   @media screen and (min-width: 53rem) {
+    gap: 1rem;
     font-size: ${({ theme }) => theme.fontSize.textXL};
   }
 

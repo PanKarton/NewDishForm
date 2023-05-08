@@ -33,6 +33,8 @@ export const useNewDishForm = () => {
 
       const response = await responseJSON.json();
 
+      console.table(response);
+
       return { success: `Successfully added ${response.name} to your menu!` };
     } catch (err) {
       setSubmitError(err.message);
