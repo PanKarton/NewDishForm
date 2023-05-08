@@ -5,7 +5,7 @@ const AdminPanel = () => (
   <>
     <Head>
       <title>Soup &#38; Slice - admin panel page</title>
-      <meta name="description" content="Admin panel page" />
+      <meta name="description" content="Admin panel page - dashboard" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
     </Head>

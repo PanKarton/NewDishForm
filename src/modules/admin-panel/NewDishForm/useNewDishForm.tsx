@@ -32,8 +32,6 @@ export const useNewDishForm = () => {
 
       const body = JSON.stringify(newData);
 
-      console.log('JSON useNewDishForm', body);
-
       const responseJSON = await fetch(
         'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',
         {

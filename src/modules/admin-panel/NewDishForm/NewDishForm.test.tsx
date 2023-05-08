@@ -84,9 +84,6 @@ describe('NewDishForm', () => {
   //     await waitFor(() => expect(fetchMock).toBeCalledTimes(1));
 
   //     const body = JSON.stringify(pizzaData);
-
-  //     console.log('JSON test', body);
-
   //     expect(fetchMock).toHaveBeenCalledWith(
   //       'https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/',
   //       {

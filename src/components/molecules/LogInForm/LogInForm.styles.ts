@@ -24,7 +24,7 @@ export const StyledForm = styled.form`
 
 export const StyledInput = styled.input`
   background-color: ${({ theme }) => theme.color.primary};
-  border: 1px solid ${({ theme }) => theme.color.contrastTransparent};
+  border: 0.0625rem solid ${({ theme }) => theme.color.contrastTransparent};
   border-radius: 0.25rem;
   font-size: ${({ theme }) => theme.fontSize.textSM};
   padding: 0.75rem 0.75rem;
@@ -32,14 +32,14 @@ export const StyledInput = styled.input`
   width: 100%;
 
   &:focus {
-    outline: 2px solid ${({ theme }) => theme.color.primaryAccent};
+    outline: 0.125rem solid ${({ theme }) => theme.color.primaryAccent};
     border-color: transparent;
   }
 `;
 
 export const StyledSubmit = styled.button`
   background-color: ${({ theme }) => theme.color.primaryAccent};
-  border: 1px solid ${({ theme }) => theme.color.contrastBorder};
+  border: 0.0625rem solid ${({ theme }) => theme.color.contrastBorder};
   color: ${({ theme }) => theme.color.primary};
 
   font-size: ${({ theme }) => theme.fontSize.textLG};

@@ -5,8 +5,8 @@ import Head from 'next/head';
 const AddNewDish = () => (
   <>
     <Head>
-      <title>Soup &#38; Slice - admin panel page</title>
-      <meta name="description" content="Admin panel page" />
+      <title>Soup &#38; Slice - new dish form</title>
+      <meta name="description" content="Admin panel page - new dish form" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
     </Head>

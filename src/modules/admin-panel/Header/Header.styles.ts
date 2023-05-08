@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  border-bottom: 1px solid ${({ theme }) => theme.color.borderDivider};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.borderDivider};
   grid-area: 1 / 1 / 2 / 3;
   display: flex;
   align-items: center;
@@ -25,7 +25,6 @@ export const StyledHeading = styled.h1`
 export const UserInfoWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* gap: 0.5rem; */
   font-size: ${({ theme }) => theme.fontSize.textBase};
   margin-left: auto;
 
