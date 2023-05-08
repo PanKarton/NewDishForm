@@ -6,7 +6,12 @@ export const Header = () => {
   return (
     <StyledHeader>
       <div className="hero-image-wrapper">
-        <Image alt="woman putting pizza into stone oven" src="/main-page-hero.jpg" fill />
+        <Image
+          alt="woman putting pizza into stone oven"
+          src="/main-page-hero.jpg"
+          fill
+          style={{ objectFit: 'cover', objectPosition: '50% 100%' }}
+        />
       </div>
       <div className="hero-text-wrapper">
         <StyledHeroText>Soup &#38; Slice</StyledHeroText>

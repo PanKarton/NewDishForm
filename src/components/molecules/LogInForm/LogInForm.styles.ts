@@ -24,17 +24,22 @@ export const StyledForm = styled.form`
 
 export const StyledInput = styled.input`
   background-color: ${({ theme }) => theme.color.primary};
-  border: 1px solid ${({ theme }) => theme.color.contrastTransparent};
+  border: 0.0625rem solid ${({ theme }) => theme.color.contrastTransparent};
   border-radius: 0.25rem;
-  font-size: 0.875rem;
+  font-size: ${({ theme }) => theme.fontSize.textSM};
   padding: 0.75rem 0.75rem;
   font-weight: 500;
   width: 100%;
+
+  &:focus {
+    outline: 0.125rem solid ${({ theme }) => theme.color.primaryAccent};
+    border-color: transparent;
+  }
 `;
 
 export const StyledSubmit = styled.button`
   background-color: ${({ theme }) => theme.color.primaryAccent};
-  border: 1px solid ${({ theme }) => theme.color.contrastBorder};
+  border: 0.0625rem solid ${({ theme }) => theme.color.contrastBorder};
   color: ${({ theme }) => theme.color.primary};
 
   font-size: ${({ theme }) => theme.fontSize.textLG};
@@ -63,5 +68,9 @@ export const StyledCheckboxWrapper = styled.div`
 
   input[type='checkbox']:checked {
     accent-color: ${({ theme }) => theme.color.primaryAccent};
+  }
+
+  &:hover > label {
+    cursor: pointer;
   }
 `;
