@@ -38,7 +38,7 @@ export const StyledInput = styled.input`
   padding: 0.5rem 1rem;
   font-size: ${({ theme }) => theme.fontSize.textXL};
   border-radius: 0.25rem;
-  width: 30rem;
+  width: min(30rem, 90%);
   text-align: center;
 
   &:hover,
@@ -99,6 +99,7 @@ export const StyledRadioInputWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 3rem;
 
     div {
@@ -163,7 +164,7 @@ export const StyledSubmit = styled.button`
   border: none;
   border-radius: 0.25rem;
   padding-block: 1rem;
-  width: 20rem;
+  width: min(20rem, 90%);
   color: ${({ theme }) => theme.color.adminPanel.primary};
   font-size: 1.375rem;
   margin-top: 2rem;

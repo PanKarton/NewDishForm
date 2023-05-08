@@ -11,7 +11,6 @@ import { DishData, useNewDishForm } from './useNewDishForm';
 import { FaPizzaSlice } from 'react-icons/fa';
 import { BiBowlHot } from 'react-icons/bi';
 import { TbBread } from 'react-icons/tb';
-import { NumberInputWithButtons } from '../NumberInput/NumberInput';
 import { Field, Form, FormRenderProps, FormSpy } from 'react-final-form';
 import { LoadingSpinner } from '@/components/atoms/LoadingSpinner/LoadingSpinner';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
@@ -50,7 +49,24 @@ export const NewDishForm = () => {
           {({ input, meta }) => (
             <StyledInputWrapper>
               <label htmlFor="no_of_slices">Number of slices:</label>
-              <StyledInput {...input} id="no_of_slices" onChange={event => input.onChange(event)} />
+              <StyledInput
+                {...input}
+                id="no_of_slices"
+                onChange={event => input.onChange(event)}
+                type="number"
+                onKeyDown={event => {
+                  if (
+                    event.key === 'e' ||
+                    event.key === '.' ||
+                    event.key === '+' ||
+                    event.key === '-'
+                  ) {
+                    event.preventDefault();
+                  }
+                }}
+                step={1}
+                min={0}
+              />
               {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
             </StyledInputWrapper>
           )}
@@ -59,10 +75,23 @@ export const NewDishForm = () => {
           {({ input, meta }) => (
             <StyledInputWrapper>
               <label htmlFor="diameter">Diameter (cm):</label>
-              <NumberInputWithButtons
+              <StyledInput
                 {...input}
                 id="diameter"
                 onChange={event => input.onChange(event)}
+                type="number"
+                onKeyDown={event => {
+                  if (
+                    event.key === 'e' ||
+                    event.key === '.' ||
+                    event.key === '+' ||
+                    event.key === '-'
+                  ) {
+                    event.preventDefault();
+                  }
+                }}
+                step={0.1}
+                min={0}
               />
               {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
             </StyledInputWrapper>
@@ -80,10 +109,23 @@ export const NewDishForm = () => {
           {({ input, meta }) => (
             <StyledInputWrapper>
               <label htmlFor="slices_of_bread">Slices of bread:</label>
-              <NumberInputWithButtons
+              <StyledInput
                 {...input}
                 id="slices_of_bread"
                 onChange={event => input.onChange(event)}
+                type="number"
+                onKeyDown={event => {
+                  if (
+                    event.key === 'e' ||
+                    event.key === '.' ||
+                    event.key === '+' ||
+                    event.key === '-'
+                  ) {
+                    event.preventDefault();
+                  }
+                }}
+                step={1}
+                min={0}
               />
               {meta.error && meta.touched && <span className="error-message">{meta.error}</span>}
             </StyledInputWrapper>
